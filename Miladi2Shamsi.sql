@@ -3,7 +3,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE   FUNCTION [dbo].[Miladi2Shamsi.sql] (@intDate  DateTime)  
+CREATE   FUNCTION [dbo].[Miladi2Shamsi] (@intDate  DateTime)  
 RETURNS Varchar(10)
 AS  
 BEGIN 
