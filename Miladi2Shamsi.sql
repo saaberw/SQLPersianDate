@@ -1,5 +1,5 @@
 /****** Code by SABER VAHABI ******/
-//صابر وهابی
+/******  برنامه نویس : صابر وهابی  ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
