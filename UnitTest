@@ -1,0 +1,87 @@
+
+------------------------------------------ 
+ DECLARE @startDate as DATE='1930/8/1'
+ DECLARE @endDate as DATE='2050/11/29';
+
+ ;with GetDates As  
+(  
+select DATEADD(day,1,@startDate) as TheDate
+UNION ALL  
+select DATEADD(day,1, TheDate) from GetDates  
+where TheDate < @endDate  
+
+)
+SELECT GetDates.TheDate AS Milady,  FORMAT(CAST(GetDates.TheDate  AS DATETIME) ,'yyyy/MM/dd','fa') AS 'Microsoft 2016+ only' ,
+ [dbo].Miladi2Shamsi(GetDates.TheDate) AS 'Miladi to Shamsi(Miladi2Shamsi)',
+CASE when  [dbo].Miladi2Shamsi(GetDates.TheDate)   = format(CAST(GetDates.TheDate  AS DATETIME) ,'yyyy/MM/dd','fa')  then 'Success' else 'Fail' end as 'TEST Miladi2Shamsi function'
+
+FROM GetDates
+OPTION (MAXRECURSION 0);    
+ ---------------------------------------
+  
+  
+/*  Result:
+
+Milady  	  Microsoft 	Miladi2Shamsi	 TEST 
+1930-08-02	1309/05/11	1309/05/11	Success
+1930-08-03	1309/05/12	1309/05/12	Success
+1930-08-04	1309/05/13	1309/05/13	Success
+1930-08-05	1309/05/14	1309/05/14	Success
+1930-08-06	1309/05/15	1309/05/15	Success
+1930-08-07	1309/05/16	1309/05/16	Success
+1930-08-08	1309/05/17	1309/05/17	Success
+1930-08-09	1309/05/18	1309/05/18	Success
+1930-08-10	1309/05/19	1309/05/19	Success
+1930-08-11	1309/05/20	1309/05/20	Success
+1930-08-12	1309/05/21	1309/05/21	Success
+1930-08-13	1309/05/22	1309/05/22	Success
+1930-08-14	1309/05/23	1309/05/23	Success
+1930-08-15	1309/05/24	1309/05/24	Success
+1930-08-16	1309/05/25	1309/05/25	Success
+1930-08-17	1309/05/26	1309/05/26	Success
+1930-08-18	1309/05/27	1309/05/27	Success
+1930-08-19	1309/05/28	1309/05/28	Success
+1930-08-20	1309/05/29	1309/05/29	Success
+1930-08-21	1309/05/30	1309/05/30	Success
+1930-08-22	1309/05/31	1309/05/31	Success
+1930-08-23	1309/06/01	1309/06/01	Success
+1930-08-24	1309/06/02	1309/06/02	Success
+1930-08-25	1309/06/03	1309/06/03	Success
+1930-08-26	1309/06/04	1309/06/04	Success
+1930-08-27	1309/06/05	1309/06/05	Success
+1930-08-28	1309/06/06	1309/06/06	Success
+1930-08-29	1309/06/07	1309/06/07	Success
+1930-08-30	1309/06/08	1309/06/08	Success
+1930-08-31	1309/06/09	1309/06/09	Success
+1930-09-01	1309/06/10	1309/06/10	Success
+1930-09-02	1309/06/11	1309/06/11	Success
+1930-09-03	1309/06/12	1309/06/12	Success
+1930-09-04	1309/06/13	1309/06/13	Success
+1930-09-05	1309/06/14	1309/06/14	Success
+1930-09-06	1309/06/15	1309/06/15	Success
+1930-09-07	1309/06/16	1309/06/16	Success
+1930-09-08	1309/06/17	1309/06/17	Success
+1930-09-09	1309/06/18	1309/06/18	Success
+1930-09-10	1309/06/19	1309/06/19	Success
+1930-09-11	1309/06/20	1309/06/20	Success
+1930-09-12	1309/06/21	1309/06/21	Success
+............................................
+2050-11-15	1429/08/24	1429/08/24	Success
+2050-11-16	1429/08/25	1429/08/25	Success
+2050-11-17	1429/08/26	1429/08/26	Success
+2050-11-18	1429/08/27	1429/08/27	Success
+2050-11-19	1429/08/28	1429/08/28	Success
+2050-11-20	1429/08/29	1429/08/29	Success
+2050-11-21	1429/08/30	1429/08/30	Success
+2050-11-22	1429/09/01	1429/09/01	Success
+2050-11-23	1429/09/02	1429/09/02	Success
+2050-11-24	1429/09/03	1429/09/03	Success
+2050-11-25	1429/09/04	1429/09/04	Success
+2050-11-26	1429/09/05	1429/09/05	Success
+2050-11-27	1429/09/06	1429/09/06	Success
+2050-11-28	1429/09/07	1429/09/07	Success
+2050-11-29	1429/09/08	1429/09/08	Success
+
+
+
+*/
